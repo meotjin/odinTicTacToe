@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # this class holds player info
 class Player
   attr_reader :name, :symbol
