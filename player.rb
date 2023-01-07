@@ -10,6 +10,7 @@ class Player
     @picks = []
   end
 
+  # the pixk array holds all the player picks with this method
   def add_pick(pick)
     picks.push(pick)
   end
