@@ -34,12 +34,12 @@ class Board
   end
 
   # checks if a given play has a winning combination in its picks array based on the win_scenarios array.
-  def check_winner(key)
+  def any_winner?(key)
     current_player = key == 1 ? player1 : player2
     win_scenarios.one? { |array| array.subset?(current_player.picks) }
   end
 
-  def check_draw
+  def drawn?
     @board_inputs.include?('')
   end
 end
