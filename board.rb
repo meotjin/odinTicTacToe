@@ -23,4 +23,11 @@ class Board
       end
     end
   end
+
+  # player plays a move and it will be stored in both board and its object
+  def play(key, pick)
+    current_player = key == 1 ? player1 : player2
+    @board_inputs[pick] = current_player.symbol
+    current_player.add_pick(pick)
+  end
 end
