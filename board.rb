@@ -1,3 +1,4 @@
+require_relative 'player'
 # frozen_string_literal: true
 
 # Class that holds boards info and methods
@@ -28,6 +29,8 @@ class Board
 
   # player plays a move and it will be stored in both board and its object
   def play(key, pick)
+    raise ScriptError if @board_inputs[pick] != ' '
+
     current_player = key == 1 ? player1 : player2
     @board_inputs[pick] = current_player.symbol
     current_player.add_pick(pick)
@@ -36,10 +39,10 @@ class Board
   # checks if a given play has a winning combination in its picks array based on the win_scenarios array.
   def any_winner?(key)
     current_player = key == 1 ? player1 : player2
-    win_scenarios.one? { |array| array.subset?(current_player.picks) }
+    @@win_scenarios.one? { |array| (array - current_player.picks).empty? }
   end
 
   def drawn?
-    @board_inputs.include?('')
+    !@board_inputs.include?(' ')
   end
 end
